@@ -8,6 +8,8 @@ botoesCategorias.forEach((botao) => {
     filtrarPorCategoria(categoriaSelecionada);
     atualizarEstadosDosBotoes(categoriaSelecionada);
   });
+
+  botao.addEventListener("keydown", mudarFocoPorTeclado);
 });
 
 function associarPainel(categoriaSelecionada) {
@@ -37,3 +39,17 @@ function atualizarEstadosDosBotoes(categoriaSelecionada) {
     botao.ariaSelected = botaoFoiSelecionado;
   })
 }
+
+const tablist = document.querySelector('[role="tablist"]');
+
+function mudarFocoPorTeclado(evento) {
+  const botaoAtual= evento.target;
+
+  if (evento.key === "ArrowRight") {
+    if (botaoAtual === tablist.lastElementChild) {
+      tablist.firstElementChild.focus();
+    } else {
+        botaoAtual.nextElementSibling.focus();
+    }
+  }
+  
