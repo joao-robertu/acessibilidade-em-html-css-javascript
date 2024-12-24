@@ -37,6 +37,7 @@ function atualizarEstadosDosBotoes(categoriaSelecionada) {
     const botaoFoiSelecionado = botao.getAttribute("name") === categoriaSelecionada;
 
     botao.ariaSelected = botaoFoiSelecionado;
+    botao.setAttribute("tabindex", botaoFoiSelecionado ? 0 : -1);
   })
 }
 
@@ -51,5 +52,11 @@ function mudarFocoPorTeclado(evento) {
     } else {
         botaoAtual.nextElementSibling.focus();
     }
+  } else if (evento.key === "ArrowLeft") {
+    if (botaoAtual === tablist.firstElementChild) {
+      tablist.lastElementChild.focus();
+    } else {
+      botaoAtual.previouEementSibling.focus();
+    }
   }
-  
+}
